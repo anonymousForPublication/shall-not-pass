@@ -1,0 +1,104 @@
+{
+ "requirements": {
+  "QuRE:ok": 1478,
+  "QuRE:defect": 633,
+  "SecReq:sec": 177,
+  "SecReq:nonsec": 265
+ },
+ "clusters": {
+  "QuRE": 2075,
+  "SecReq": 419
+ },
+ "split": {
+  "QuRE:calibration": 1061,
+  "QuRE:evaluation": 1050,
+  "SecReq:calibration": 222,
+  "SecReq:evaluation": 220
+ },
+ "variants": {
+  "M1": {
+   "QuRE": 773,
+   "SecReq": 260
+  },
+  "M2": {
+   "QuRE": 205,
+   "SecReq": 10
+  },
+  "M3": {
+   "QuRE": 199,
+   "SecReq": 10
+  },
+  "M4": {
+   "QuRE": 138,
+   "SecReq": 1
+  },
+  "M5": {
+   "QuRE": 1010,
+   "SecReq": 347
+  },
+  "M6": {
+   "QuRE": 258,
+   "SecReq": 108
+  },
+  "M7": {
+   "QuRE": 442,
+   "SecReq": 112
+  },
+  "M8": {
+   "QuRE": 262,
+   "SecReq": 102
+  },
+  "M9": {
+   "QuRE": 769,
+   "SecReq": 237
+  },
+  "M10": {
+   "QuRE": 2111,
+   "SecReq": 442
+  },
+  "E1": {
+   "QuRE": 116,
+   "SecReq": 10
+  },
+  "E2": {
+   "QuRE": 131,
+   "SecReq": 1
+  },
+  "E3": {
+   "QuRE": 346,
+   "SecReq": 107
+  },
+  "E4": {
+   "QuRE": 2111,
+   "SecReq": 442
+  },
+  "E5": {
+   "QuRE": 773,
+   "SecReq": 260
+  },
+  "E6": {
+   "QuRE": 182,
+   "SecReq": 38
+  }
+ },
+ "g5_detects_drift": {
+  "M1": "1033/1033",
+  "M2": "215/215",
+  "M3": "209/209",
+  "M4": "139/139",
+  "M5": "1357/1357",
+  "M6": "366/366",
+  "M7": "554/554",
+  "M8": "1/364",
+  "M9": "216/1006",
+  "M10": "1300/2553"
+ },
+ "g5_preserves_equiv": {
+  "E1": "126/126",
+  "E2": "132/132",
+  "E3": "453/453",
+  "E4": "2553/2553",
+  "E5": "1033/1033",
+  "E6": "220/220"
+ }
+}

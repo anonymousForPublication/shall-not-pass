@@ -1,0 +1,11 @@
+You are reviewing a proposed revision of a software requirement.
+
+Original requirement:
+{original}
+
+Revised requirement:
+{revision}
+
+Does the revised requirement preserve every obligation of the original requirement, including its binding force (for example "shall" versus "should"), all values and units, negations, quantifiers, conditions, actors, and the items in its scope, without adding any new obligation?
+
+Answer with a single integer from 1 to 5, where 1 means "definitely not preserved" and 5 means "definitely preserved". Output only the integer.

@@ -1,0 +1,5 @@
+# gate scoring on the GPU machine (install torch with CUDA first, see RUNBOOK.md)
+-r requirements-core.txt
+bert-score
+sentence-transformers
+transformers

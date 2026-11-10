@@ -1,0 +1,163 @@
+
+=== Held-out drift (v1.3): silent acceptance at frozen thresholds
+gate                              H1            H2            H3            H4           ALL
+G5_diff                 213/308  69%  307/308 100%   26/26  100%   25/25  100%  571/667  86%
+G1_BERTScore            262/308  85%  253/308  82%   25/26   96%   24/25   96%  564/667  85%
+G2_SBERT                306/308  99%  285/308  93%   26/26  100%   14/25   56%  631/667  95%
+G3_NLI                    2/308   1%    5/308   2%    0/26    0%    0/25    0%    7/667   1%
+G6_hybrid                 2/308   1%    5/308   2%    0/26    0%    0/25    0%    7/667   1%
+G4_DeepSeek (>=4)         0/308   0%    0/308   0%    0/26    0%    0/25    0%    0/667   0%
+G4_DeepSeek (theta)       0/308   0%    0/308   0%    0/26    0%    0/25    0%    0/667   0%
+G4_Qwen (>=4)           125/308  41%    8/308   3%    8/26   31%    0/25    0%  141/667  21%
+G4_Qwen (theta)         308/308 100%  308/308 100%   26/26  100%   25/25  100%  667/667 100%
+G4_Argon (>=4)            1/308   0%    0/308   0%    0/26    0%    0/25    0%    1/667   0%
+
+=== RQ1/RQ2 [main] q=0.05 | calibration equivalents=2273 | eval mutants=3874, eval equivalents=2244
+thresholds: {'G1_BERTScore': 0.8776, 'G2_SBERT': 0.9458, 'G3_NLI': 0.9808, 'G4_DeepSeek': 5.0, 'G4_Qwen': 1.0}
+op    n   G1_BERTScore     G2_SBERT       G3_NLI  G4_DeepSeek      G4_Qwen      G5_diff    G6_hybrid
+M1    511         98.8%        92.2%        55.4%         0.0%        99.8%         0.0%         0.0%
+M2    107         57.0%        82.2%         0.0%         0.0%        99.1%         0.0%         0.0%
+M3    105         99.0%        97.1%         1.0%         0.0%       100.0%         0.0%         0.0%
+M4     68         97.1%        94.1%         2.9%         0.0%       100.0%         0.0%         0.0%
+M5    679         97.8%        56.0%         0.6%         0.0%        97.1%         0.0%         0.0%
+M6    175         94.9%        92.0%        10.9%         0.0%       100.0%         0.0%         0.0%
+M7    284         17.3%        29.2%         1.1%         1.8%        99.6%         0.0%         0.0%
+M8    171         42.1%        78.4%        47.4%         2.3%        97.7%        99.4%        46.8%
+M9    504         41.7%        63.9%         2.2%         4.2%       100.0%        79.6%         2.2%
+M10  1270         58.9%        50.9%         0.0%         0.1%        99.7%        48.7%         0.0%
+ALL  3874         68.3%        63.3%        10.4%         0.8%        99.2%        30.7%         2.3%
+FER  2244          4.9%         4.8%         5.5%         3.8%         0.4%         0.0%         5.5%
+AUROC             0.768        0.722        0.939        0.974        0.632        0.847          nan
+
+=== RQ1/RQ2 [90% equivalents accepted] q=0.1 | calibration equivalents=2273 | eval mutants=3874, eval equivalents=2244
+thresholds: {'G1_BERTScore': 0.906, 'G2_SBERT': 0.9591, 'G3_NLI': 0.9859, 'G4_DeepSeek': 5.0, 'G4_Qwen': 1.0}
+op    n   G1_BERTScore     G2_SBERT       G3_NLI  G4_DeepSeek      G4_Qwen      G5_diff    G6_hybrid
+M1    511         97.1%        85.3%        54.4%         0.0%        99.8%         0.0%         0.0%
+M2    107         43.9%        76.6%         0.0%         0.0%        99.1%         0.0%         0.0%
+M3    105         95.2%        94.3%         0.0%         0.0%       100.0%         0.0%         0.0%
+M4     68         89.7%        92.6%         2.9%         0.0%       100.0%         0.0%         0.0%
+M5    679         92.5%        47.9%         0.4%         0.0%        97.1%         0.0%         0.0%
+M6    175         89.7%        88.6%         9.1%         0.0%       100.0%         0.0%         0.0%
+M7    284          9.5%        23.9%         1.1%         1.8%        99.6%         0.0%         0.0%
+M8    171         24.0%        66.1%        39.2%         2.3%        97.7%        99.4%        38.6%
+M9    504         27.6%        56.7%         2.2%         4.2%       100.0%        79.6%         2.2%
+M10  1270         33.9%        40.2%         0.0%         0.1%        99.7%        48.7%         0.0%
+ALL  3874         54.9%        55.2%         9.8%         0.8%        99.2%        30.7%         2.0%
+FER  2244          9.0%         9.7%        10.7%         3.8%         0.4%         0.0%        10.7%
+AUROC             0.768        0.722        0.939        0.974        0.632        0.847          nan
+
+=== RQ1/RQ2 [99% equivalents accepted] q=0.01 | calibration equivalents=2273 | eval mutants=3874, eval equivalents=2244
+thresholds: {'G1_BERTScore': 0.8179, 'G2_SBERT': 0.9147, 'G3_NLI': 0.958, 'G4_DeepSeek': 1.0, 'G4_Qwen': 1.0}
+op    n   G1_BERTScore     G2_SBERT       G3_NLI  G4_DeepSeek      G4_Qwen      G5_diff    G6_hybrid
+M1    511         99.8%        98.6%        59.5%       100.0%        99.8%         0.0%         0.0%
+M2    107         81.3%        92.5%         0.9%       100.0%        99.1%         0.0%         0.0%
+M3    105        100.0%        98.1%         1.9%       100.0%       100.0%         0.0%         0.0%
+M4     68        100.0%        97.1%         4.4%       100.0%       100.0%         0.0%         0.0%
+M5    679         99.7%        65.8%         0.6%       100.0%        97.1%         0.0%         0.0%
+M6    175         99.4%        98.3%        13.7%       100.0%       100.0%         0.0%         0.0%
+M7    284         36.3%        41.5%         1.1%        98.2%        99.6%         0.0%         0.0%
+M8    171         73.1%        86.5%        60.2%        99.4%        97.7%        99.4%        59.6%
+M9    504         66.5%        77.4%         2.8%        99.2%       100.0%        79.6%         2.8%
+M10  1270         86.6%        68.7%         0.0%        99.9%        99.7%        48.7%         0.0%
+ALL  3874         84.8%        75.4%        11.8%        99.7%        99.2%        30.7%         3.0%
+FER  2244          1.1%         1.3%         1.0%         0.7%         0.4%         0.0%         1.0%
+AUROC             0.768        0.722        0.939        0.974        0.632        0.847          nan
+
+=== RQ1/RQ2 [without E5] q=0.05 | calibration equivalents=1751 | eval mutants=3874, eval equivalents=1733
+thresholds: {'G1_BERTScore': 0.8652, 'G2_SBERT': 0.952, 'G3_NLI': 0.9784, 'G4_DeepSeek': 1.0, 'G4_Qwen': 1.0}
+op    n   G1_BERTScore     G2_SBERT       G3_NLI  G4_DeepSeek      G4_Qwen      G5_diff    G6_hybrid
+M1    511         99.4%        90.0%        56.0%       100.0%        99.8%         0.0%         0.0%
+M2    107         68.2%        79.4%         0.0%       100.0%        99.1%         0.0%         0.0%
+M3    105         99.0%        96.2%         1.0%       100.0%       100.0%         0.0%         0.0%
+M4     68         97.1%        92.6%         2.9%       100.0%       100.0%         0.0%         0.0%
+M5    679         98.4%        51.7%         0.6%       100.0%        97.1%         0.0%         0.0%
+M6    175         96.0%        92.0%        10.9%       100.0%       100.0%         0.0%         0.0%
+M7    284         20.8%        26.4%         1.1%        98.2%        99.6%         0.0%         0.0%
+M8    171         49.7%        73.1%        50.3%        99.4%        97.7%        99.4%        49.7%
+M9    504         48.4%        60.9%         2.2%        99.2%       100.0%        79.6%         2.2%
+M10  1270         67.0%        46.5%         0.0%        99.9%        99.7%        48.7%         0.0%
+ALL  3874         72.9%        59.8%        10.6%        99.7%        99.2%        30.7%         2.5%
+FER  1733          4.4%         5.1%         5.5%         0.7%         0.6%         0.0%         5.5%
+AUROC             0.757        0.750        0.932        0.969        0.553        0.847          nan
+
+=== Strong-judge check (Gemini 4 Argon), subsample: 698 eval mutants, 150 eval equivalents, theta_Argon=1.0
+op    G1_BERTScore       G3_NLI  G4_DeepSeek      G4_Qwen     G4_Argon
+M1       70/70        36/70         0/70        70/70        70/70    
+M2       40/70         0/70         0/70        69/70        70/70    
+M3       70/70         0/70         0/70        70/70        70/70    
+M4       66/68         2/68         0/68        68/68        68/68    
+M5       66/70         0/70         0/70        67/70        70/70    
+M6       67/70         7/70         0/70        70/70        70/70    
+M7       14/70         0/70         1/70        70/70        70/70    
+M8       28/70        32/70         2/70        68/70        70/70    
+M9       30/70         1/70         0/70        70/70        70/70    
+M10      43/70         0/70         0/70        70/70        70/70    
+ALL     494/698       78/698        3/698      692/698      698/698   
+FER       7/150       10/150       11/150        2/150        0/150   
+{'mcnemar_Argon_vs_G4_DeepSeek': {'argon_only': 695, 'other_only': 0, 'p': np.float64(1.2166986024289023e-209)}, 'mcnemar_Argon_vs_G4_Qwen': {'argon_only': 6, 'other_only': 0, 'p': np.float64(0.03125)}}
+
+=== RQ3: real repairs | gate thresholds from RQ1 calibration; judge thresholds {'DeepSeek': 5.0, 'Qwen': 1.0, 'Gemma': 4.0}
+
+-- DeepSeek repairs: n=2111 (defect 633, ok 1478), empty=6
+   weak words removed (defects): 465/633 (73.5%)
+   protected-commitment change: 1865/2105 (88.6%)  [defect 557/633, ok 1308/1478]  types={'modality': 1371, 'mod_binding_added': 1155, 'quant': 644, 'cond': 755, 'negation': 272, 'mod_nonbinding_removed': 190, 'mod_declarative_added': 4, 'mod_declarative_removed': 80, 'mod_nonbinding_added': 21, 'values': 259}
+   fabricated specificity: 183/2105 (8.7%)  [defect 83, ok 100]
+   ok controls: unchanged 0/1478, mean token edit distance 0.511
+   flagged (commitment change or fabricated value): 1865/2105
+   accepted among flagged: G1_BERTScore 1/1865 (0.1%), G2_SBERT 205/1865 (11.0%), G3_NLI 283/1865 (15.2%), self_judge 193/1865 (10.3%), indep_judge 1865/1865 (100.0%)
+   accepted among unflagged: G1_BERTScore 2/240 (0.8%), G2_SBERT 42/240 (17.5%), G3_NLI 61/240 (25.4%), self_judge 80/240 (33.3%), indep_judge 240/240 (100.0%)
+   self vs independent judge on flagged (McNemar): {'self_only': 0, 'indep_only': 1672, 'p': np.float64(0.0)}
+
+-- Qwen repairs: n=2111 (defect 633, ok 1478), empty=0
+   weak words removed (defects): 535/633 (84.5%)
+   protected-commitment change: 1997/2111 (94.6%)  [defect 604/633, ok 1393/1478]  types={'modality': 1386, 'quant': 967, 'mod_binding_added': 1158, 'cond': 930, 'negation': 509, 'values': 807, 'mod_nonbinding_removed': 208, 'mod_declarative_removed': 82, 'mod_nonbinding_added': 24, 'mod_declarative_added': 1, 'mod_binding_removed': 2}
+   fabricated specificity: 730/2111 (34.6%)  [defect 298, ok 432]
+   ok controls: unchanged 0/1478, mean token edit distance 0.662
+   flagged (commitment change or fabricated value): 1997/2111
+   accepted among flagged: G1_BERTScore 0/1997 (0.0%), G2_SBERT 47/1997 (2.4%), G3_NLI 44/1997 (2.2%), self_judge 1997/1997 (100.0%), indep_judge 28/1997 (1.4%)
+   accepted among unflagged: G1_BERTScore 0/114 (0.0%), G2_SBERT 10/114 (8.8%), G3_NLI 7/114 (6.1%), self_judge 114/114 (100.0%), indep_judge 11/114 (9.6%)
+   self vs independent judge on flagged (McNemar): {'self_only': 1969, 'indep_only': 0, 'p': np.float64(0.0)}
+
+-- Gemma repairs: n=2111 (defect 633, ok 1478), empty=0
+   weak words removed (defects): 510/633 (80.6%)
+   protected-commitment change: 1836/2111 (87.0%)  [defect 548/633, ok 1288/1478]  types={'modality': 1299, 'quant': 554, 'mod_binding_added': 1173, 'cond': 693, 'negation': 248, 'mod_nonbinding_removed': 219, 'values': 226, 'mod_nonbinding_added': 13, 'mod_declarative_removed': 81}
+   fabricated specificity: 142/2111 (6.7%)  [defect 59, ok 83]
+   ok controls: unchanged 0/1478, mean token edit distance 0.555
+   flagged (commitment change or fabricated value): 1836/2111
+   accepted among flagged: G1_BERTScore 2/1836 (0.1%), G2_SBERT 84/1836 (4.6%), G3_NLI 135/1836 (7.4%), self_judge 1326/1836 (72.2%), indep_judge 92/1836 (5.0%)
+   accepted among unflagged: G1_BERTScore 0/275 (0.0%), G2_SBERT 24/275 (8.7%), G3_NLI 39/275 (14.2%), self_judge 228/275 (82.9%), indep_judge 32/275 (11.6%)
+   self vs independent judge on flagged (McNemar): {'self_only': 1234, 'indep_only': 0, 'p': np.float64(0.0)}
+
+=== RQ3: real repairs | gate thresholds from RQ1 calibration; judge thresholds {'DeepSeek': 4.0, 'Qwen': 4.0, 'Gemma': 4.0}
+
+-- DeepSeek repairs: n=2111 (defect 633, ok 1478), empty=6
+   weak words removed (defects): 465/633 (73.5%)
+   protected-commitment change: 1865/2105 (88.6%)  [defect 557/633, ok 1308/1478]  types={'modality': 1371, 'mod_binding_added': 1155, 'quant': 644, 'cond': 755, 'negation': 272, 'mod_nonbinding_removed': 190, 'mod_declarative_added': 4, 'mod_declarative_removed': 80, 'mod_nonbinding_added': 21, 'values': 259}
+   fabricated specificity: 183/2105 (8.7%)  [defect 83, ok 100]
+   ok controls: unchanged 0/1478, mean token edit distance 0.511
+   flagged (commitment change or fabricated value): 1865/2105
+   accepted among flagged: G1_BERTScore 1/1865 (0.1%), G2_SBERT 205/1865 (11.0%), G3_NLI 283/1865 (15.2%), self_judge 193/1865 (10.3%), indep_judge 1791/1865 (96.0%)
+   accepted among unflagged: G1_BERTScore 2/240 (0.8%), G2_SBERT 42/240 (17.5%), G3_NLI 61/240 (25.4%), self_judge 81/240 (33.8%), indep_judge 235/240 (97.9%)
+   self vs independent judge on flagged (McNemar): {'self_only': 2, 'indep_only': 1600, 'p': np.float64(0.0)}
+
+-- Qwen repairs: n=2111 (defect 633, ok 1478), empty=0
+   weak words removed (defects): 535/633 (84.5%)
+   protected-commitment change: 1997/2111 (94.6%)  [defect 604/633, ok 1393/1478]  types={'modality': 1386, 'quant': 967, 'mod_binding_added': 1158, 'cond': 930, 'negation': 509, 'values': 807, 'mod_nonbinding_removed': 208, 'mod_declarative_removed': 82, 'mod_nonbinding_added': 24, 'mod_declarative_added': 1, 'mod_binding_removed': 2}
+   fabricated specificity: 730/2111 (34.6%)  [defect 298, ok 432]
+   ok controls: unchanged 0/1478, mean token edit distance 0.662
+   flagged (commitment change or fabricated value): 1997/2111
+   accepted among flagged: G1_BERTScore 0/1997 (0.0%), G2_SBERT 47/1997 (2.4%), G3_NLI 44/1997 (2.2%), self_judge 1789/1997 (89.6%), indep_judge 28/1997 (1.4%)
+   accepted among unflagged: G1_BERTScore 0/114 (0.0%), G2_SBERT 10/114 (8.8%), G3_NLI 7/114 (6.1%), self_judge 107/114 (93.9%), indep_judge 11/114 (9.6%)
+   self vs independent judge on flagged (McNemar): {'self_only': 1761, 'indep_only': 0, 'p': np.float64(0.0)}
+
+-- Gemma repairs: n=2111 (defect 633, ok 1478), empty=0
+   weak words removed (defects): 510/633 (80.6%)
+   protected-commitment change: 1836/2111 (87.0%)  [defect 548/633, ok 1288/1478]  types={'modality': 1299, 'quant': 554, 'mod_binding_added': 1173, 'cond': 693, 'negation': 248, 'mod_nonbinding_removed': 219, 'values': 226, 'mod_nonbinding_added': 13, 'mod_declarative_removed': 81}
+   fabricated specificity: 142/2111 (6.7%)  [defect 59, ok 83]
+   ok controls: unchanged 0/1478, mean token edit distance 0.555
+   flagged (commitment change or fabricated value): 1836/2111
+   accepted among flagged: G1_BERTScore 2/1836 (0.1%), G2_SBERT 84/1836 (4.6%), G3_NLI 135/1836 (7.4%), self_judge 1326/1836 (72.2%), indep_judge 93/1836 (5.1%)
+   accepted among unflagged: G1_BERTScore 0/275 (0.0%), G2_SBERT 24/275 (8.7%), G3_NLI 39/275 (14.2%), self_judge 228/275 (82.9%), indep_judge 32/275 (11.6%)
+   self vs independent judge on flagged (McNemar): {'self_only': 1233, 'indep_only': 0, 'p': np.float64(0.0)}
+
+written results/analysis/results.json
