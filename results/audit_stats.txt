@@ -1,0 +1,24 @@
+Cohen's kappa (obligations, n=150): 0.955  observed agreement 0.980
+Cohen's kappa (garbled, n=150): 0.784  observed agreement 0.953
+
+op       n  both valid  both invalid  split  garbled (both)
+E1       8           8             0      0               0
+E2       8           8             0      0               0
+E3       9           6             0      3               2
+E4       5           5             0      0               0
+E5      10          10             0      0               0
+E6      10          10             0      0               0
+M1      10          10             0      0               0
+M2      10          10             0      0               1
+M3      10          10             0      0               0
+M4      10           9             1      0               0
+M5      10          10             0      0               0
+M6      10          10             0      0               0
+M7      10          10             0      0               1
+M8      10          10             0      0               6
+M9      10           9             1      0               2
+M10     10          10             0      0               3
+drift  100          98             2      0              13
+equiv   50          47             0      3               2
+drift: both raters agree with construction 98/100 (98.0%, Wilson 95% 93.0%-99.4%)
+equiv: both raters agree with construction 47/50 (94.0%, Wilson 95% 83.8%-97.9%)

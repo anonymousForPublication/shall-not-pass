@@ -4,6 +4,8 @@
       calibration-split equivalents (to set thresholds) + all evaluation-split variants
   python -m snp.pairs repairs results/repair_*.jsonl  -> data/derived/repair_pairs.jsonl
       one pair per (requirement, repair model); the response is cleaned deterministically
+  python -m snp.pairs repairs_L results/L_repair_*.jsonl -> data/derived/L_repair_pairs.jsonl  (arm L; never
+      overwrites the main repair_pairs.jsonl)
   python -m snp.pairs dry                     -> data/derived/dry_pairs.jsonl
       10 drift mutants + 10 equivalents from the CALIBRATION split (never used for reported
       results), to sanity-check that a judge separates them before the full runs
@@ -50,10 +52,10 @@ def clean_repair(text: str) -> str:
     return t
 
 
-def repairs(paths: list[str]) -> None:
+def repairs(paths: list[str], out: str = "repair_pairs.jsonl") -> None:
     R = _reqs()
     n = 0
-    with open(D / "repair_pairs.jsonl", "w") as f:
+    with open(D / out, "w") as f:
         for p in paths:
             for line in open(p):
                 r = json.loads(line)
@@ -85,4 +87,5 @@ def dry() -> None:
 
 
 if __name__ == "__main__":
-    {"variants": lambda: variants(), "repairs": lambda: repairs(sys.argv[2:]), "dry": lambda: dry()}[sys.argv[1]]()
+    {"variants": lambda: variants(), "repairs": lambda: repairs(sys.argv[2:]),
+     "repairs_L": lambda: repairs(sys.argv[2:], "L_repair_pairs.jsonl"), "dry": lambda: dry()}[sys.argv[1]]()

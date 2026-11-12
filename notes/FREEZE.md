@@ -112,3 +112,11 @@ Ollama IDs: qwen3.5:9b 56671c2ab938, gemma4:12b 6114515d63c1 (arm L candidates p
 HF snapshots: roberta-large 722cf37b1afa9454edce342e7895e588b6ff1d59,
   sentence-transformers/all-mpnet-base-v2 e8c3b32edf5434bc2275fc9bab85f82640a19130,
   microsoft/deberta-large-mnli 7296194b9009373def4f7c5dad292651e4b5cf4e.
+
+## Arm L execution plan (2026-11-10, before any arm-L run)
+A Windows RTX 4000 SFF Ada (20 GB) will be available before 2026-12-05, so arm L will be run as pre-registered:
+Qwen 3.8 27B as judge on the 8,391 pairs (plus the 667 held-out pairs, mirroring v1.3), repairs by Qwen 3.8 27B and
+Gemma 4 26B, self-judges by each, independent judge DeepSeek, G1-G3 on the repairs; same prompts, data, thresholds
+and rules (score >= 4 reported next to the calibrated rule). pairs.py gained `repairs_L`, which writes
+data/derived/L_repair_pairs.jsonl and never touches the main repair_pairs.jsonl. A model that does not run 100% on
+the GPU is reported as not run.

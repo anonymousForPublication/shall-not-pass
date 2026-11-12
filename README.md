@@ -36,7 +36,7 @@ python -m snp.analysis                 # writes results/analysis/results.json an
 | `prompts/` | Repair and judge prompts, used verbatim |
 | `data/raw/` | QuRE and SecReq as downloaded from Zenodo |
 | `data/derived/` | Requirements, 7,796 drift mutants, 4,517 equivalents, 667 held-out mutants, gate pairs, repair pairs |
-| `data/audit/audit_sheet.csv` | The 150-item blind validity audit as given to the raters |
+| `data/audit/` | Blind validity audit: sheet as given to the raters, both raters' answers, the operator key; `python -m snp.audit_stats` gives kappa and validity (`results/audit_stats.txt`) |
 | `results/` | Raw outputs of every gate and model run (one JSON line per call) |
 | `notes/FREEZE.md` | Frozen protocol, file hashes, every later revision with date and reason, run environment |
 | `RUNBOOK.md` | Exact commands used for the GPU and API runs |

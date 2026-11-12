@@ -145,24 +145,52 @@ python -m snp.run_llm judge --model gemma4:12b --base-url http://localhost:11434
 
 All runs can be resumed: if one stops, run the same command again.
 
-## 5b. Optional arm L: larger local models on Windows (run only if a machine is free by 5 Dec 2026)
+## 5b. Arm L: larger local models on Windows (pre-registered; run only if a machine is free by 5 Dec 2026)
 
-Pre-registered in protocol v1.2: if a Windows workstation (RTX 4000 SFF Ada, 20 GB) becomes free by
-**5 December 2026**, run the same steps with `qwen3.8:27b` and `gemma4:26b`. They are reported as a
-model-size comparison against the 9B/12B arm. If no machine is free by then, the arm is reported as not run.
-Use the same prompts and frozen data, with reasoning off. First check that each model runs 100% on the GPU
-(`ollama ps`). If not, stop and report it.
+Same prompts, frozen data and decision rules as the 9B/12B arm, reasoning off; reported as a model-size
+comparison. Machine: Windows workstation with an RTX 4000 SFF Ada (20 GB). About 12 hours of GPU time in total,
+so run it overnight. Everything runs locally; no API key is needed on Windows.
 
+**Setup (PowerShell, about 30 min).** Install Python 3.11 or newer from python.org and Ollama for Windows from
+ollama.com. Unzip `snp_armL_windows.zip` into, for example, `C:\snp`, then:
 ```powershell
+cd C:\snp
+python -m venv .venv; .\.venv\Scripts\Activate.ps1      # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+pip install openai
 $env:PYTHONPATH = "src"
 ollama pull qwen3.8:27b; ollama pull gemma4:26b
-python -m snp.run_llm judge  --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/dry_pairs.jsonl --out results/dry_judge_qwen27b.jsonl
-ollama ps    # must show 100% GPU
-python -m snp.run_llm judge  --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_judge_qwen3.8-27b.jsonl
-python -m snp.run_llm repair --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_repair_qwen3.8-27b.jsonl
-python -m snp.run_llm repair --model gemma4:26b  --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_repair_gemma4-26b.jsonl
+ollama list        # IDs must match the VM: qwen3.8:27b aaee06c39dcf, gemma4:26b 001e5dafc3c7
 ```
-Then build the arm-L repair pairs with `python -m snp.pairs repairs results/L_repair_*.jsonl` and score them as in step 5.
+
+**Check that each model fits on the GPU (5 min).** The protocol requires 100% GPU; if `ollama ps` shows any CPU
+share, stop and report it instead of running.
+```powershell
+python -m snp.run_llm judge --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/dry_pairs.jsonl --out results/L_dry_qwen3.8-27b.jsonl
+ollama ps
+python -m snp.run_llm judge --model gemma4:26b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/dry_pairs.jsonl --out results/L_dry_gemma4-26b.jsonl
+ollama ps
+```
+
+**Runs (in this order; each command resumes if interrupted).**
+```powershell
+# L1 judge on the 8,391 mutant/equivalent pairs (about 3 h) and on the 667 held-out pairs (about 15 min)
+python -m snp.run_llm judge --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_judge_qwen3.8-27b.jsonl
+python -m snp.run_llm judge --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/heldout_pairs.jsonl --out results/L_heldout_judge_qwen3.8-27b.jsonl
+# L2 repairs of the 2,111 QuRE requirements (about 3.5 h per model)
+python -m snp.run_llm repair --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_repair_qwen3.8-27b.jsonl
+python -m snp.run_llm repair --model gemma4:26b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/L_repair_gemma4-26b.jsonl
+# L3 self-judges of the repairs (about 40 min per model); PowerShell does not expand *, so list both files
+python -m snp.pairs repairs_L results/L_repair_qwen3.8-27b.jsonl results/L_repair_gemma4-26b.jsonl
+python -m snp.run_llm judge --model qwen3.8:27b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/L_repair_pairs.jsonl --repair-model qwen3.8:27b --out results/L_rjudge_qwen3.8-27b.jsonl
+python -m snp.run_llm judge --model gemma4:26b --base-url http://localhost:11434/v1 --reasoning-effort none --pairs data/derived/L_repair_pairs.jsonl --repair-model gemma4:26b --out results/L_rjudge_gemma4-26b.jsonl
+```
+
+**Then on the Linux VM** (copy `data/derived/L_repair_pairs.jsonl` and the `results/L_*` files into the code folder):
+```bash
+python -m snp.run_gates --pairs data/derived/L_repair_pairs.jsonl --out results/L_repair_gates_g1g3.csv
+python -m snp.run_llm judge --model deepseek-flash --base-url https://api.deepseek.com --api-key-env DEEPSEEK_API_KEY --max-tokens 4000 --pairs data/derived/L_repair_pairs.jsonl --out results/L_rjudge_deepseek-flash.jsonl
+```
+The DeepSeek call is the independent judge for both L repairers (about $2).
 
 ## 6. Collect the outputs
 
