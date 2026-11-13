@@ -1,0 +1,2 @@
+Improve the following requirement so that it is unambiguous and verifiable according to ISO/IEC/IEEE 29148, while preserving its meaning. If the requirement is already unambiguous and verifiable, return it unchanged. Return only the requirement.
+Requirement: {requirement}

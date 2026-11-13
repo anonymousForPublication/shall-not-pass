@@ -1,0 +1,116 @@
+{
+ "DeepSeek|P1": {
+  "defect": {
+   "n": 633,
+   "pcc": 557,
+   "modality_only": 123,
+   "beyond_modality": 434,
+   "beyond_mod_cond": 321,
+   "fabricated": 83,
+   "empty": 1
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1308,
+   "modality_only": 407,
+   "beyond_modality": 901,
+   "beyond_mod_cond": 601,
+   "fabricated": 100,
+   "empty": 5
+  }
+ },
+ "DeepSeek|P2": {
+  "defect": {
+   "n": 633,
+   "pcc": 558,
+   "modality_only": 126,
+   "beyond_modality": 432,
+   "beyond_mod_cond": 320,
+   "fabricated": 94,
+   "empty": 1
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1276,
+   "modality_only": 435,
+   "beyond_modality": 841,
+   "beyond_mod_cond": 569,
+   "fabricated": 88,
+   "empty": 7,
+   "unchanged": 1
+  }
+ },
+ "Qwen|P1": {
+  "defect": {
+   "n": 633,
+   "pcc": 604,
+   "modality_only": 43,
+   "beyond_modality": 561,
+   "beyond_mod_cond": 507,
+   "fabricated": 298
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1393,
+   "modality_only": 185,
+   "beyond_modality": 1208,
+   "beyond_mod_cond": 1051,
+   "fabricated": 432
+  }
+ },
+ "Qwen|P2": {
+  "defect": {
+   "n": 633,
+   "pcc": 591,
+   "modality_only": 58,
+   "beyond_modality": 533,
+   "beyond_mod_cond": 455,
+   "fabricated": 268
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1309,
+   "modality_only": 260,
+   "beyond_modality": 1049,
+   "beyond_mod_cond": 842,
+   "fabricated": 314,
+   "unchanged": 3
+  }
+ },
+ "Gemma|P1": {
+  "defect": {
+   "n": 633,
+   "pcc": 548,
+   "modality_only": 153,
+   "beyond_modality": 395,
+   "beyond_mod_cond": 282,
+   "fabricated": 59
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1288,
+   "modality_only": 401,
+   "beyond_modality": 887,
+   "beyond_mod_cond": 585,
+   "fabricated": 83
+  }
+ },
+ "Gemma|P2": {
+  "defect": {
+   "n": 633,
+   "pcc": 550,
+   "modality_only": 159,
+   "beyond_modality": 391,
+   "beyond_mod_cond": 285,
+   "fabricated": 87
+  },
+  "ok": {
+   "n": 1478,
+   "pcc": 1266,
+   "modality_only": 413,
+   "beyond_modality": 853,
+   "beyond_mod_cond": 562,
+   "fabricated": 93
+  }
+ }
+}

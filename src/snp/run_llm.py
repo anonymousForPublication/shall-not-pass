@@ -95,10 +95,11 @@ def main() -> None:
                     help="judge only repair pairs from these repair models (comma-separated)")
     ap.add_argument("--max-tokens", type=int, default=400)
     ap.add_argument("--limit", type=int, default=None, help="dry run on the first N items")
+    ap.add_argument("--prompt", default="repair.txt", help="repair prompt file in prompts/ (protocol v1.4: repair_p2.txt)")
     a = ap.parse_args()
 
     if a.task == "repair":
-        tmpl = (ROOT / "prompts/repair.txt").read_text()
+        tmpl = (ROOT / "prompts" / a.prompt).read_text()
         reqs = [json.loads(l) for l in open(ROOT / "data/derived/requirements.jsonl")]
         items = [r for r in reqs if r["corpus"] == "QuRE"]
         run(items, "rid", lambda r: tmpl.format(requirement=r["text"]), a)

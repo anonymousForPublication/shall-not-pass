@@ -1,0 +1,74 @@
+{
+ "modality": {
+  "u_n": 9,
+  "u_both_yes": 0,
+  "u_any_yes": 0,
+  "u_both_no": 9,
+  "u_split": 0,
+  "f_n": 21,
+  "f_both_yes": 16,
+  "f_any_yes": 16,
+  "f_both_no": 5,
+  "f_split": 0
+ },
+ "values": {
+  "f_n": 21,
+  "f_both_yes": 12,
+  "f_any_yes": 12,
+  "f_both_no": 8,
+  "f_split": 1,
+  "u_n": 9,
+  "u_both_yes": 0,
+  "u_any_yes": 1,
+  "u_both_no": 8,
+  "u_split": 1
+ },
+ "negation": {
+  "f_n": 21,
+  "f_both_yes": 2,
+  "f_any_yes": 2,
+  "f_both_no": 18,
+  "f_split": 1,
+  "u_n": 9,
+  "u_both_yes": 0,
+  "u_any_yes": 0,
+  "u_both_no": 9,
+  "u_split": 0
+ },
+ "quant": {
+  "f_n": 21,
+  "f_both_yes": 13,
+  "f_any_yes": 14,
+  "f_both_no": 7,
+  "f_split": 1,
+  "u_n": 9,
+  "u_both_yes": 1,
+  "u_any_yes": 1,
+  "u_both_no": 8,
+  "u_split": 0
+ },
+ "cond": {
+  "f_n": 21,
+  "f_both_yes": 7,
+  "f_any_yes": 7,
+  "f_both_no": 11,
+  "f_split": 3,
+  "u_n": 9,
+  "u_both_yes": 0,
+  "u_any_yes": 0,
+  "u_both_no": 9,
+  "u_split": 0
+ },
+ "ALL": {
+  "u_n": 45,
+  "u_both_yes": 1,
+  "u_any_yes": 2,
+  "u_both_no": 43,
+  "u_split": 1,
+  "f_n": 105,
+  "f_both_yes": 50,
+  "f_any_yes": 51,
+  "f_both_no": 49,
+  "f_split": 6
+ }
+}

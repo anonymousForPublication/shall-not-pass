@@ -1,0 +1,17 @@
+text mismatches vs generated sheet: none
+Cohen's kappa (obligations, n=50): 1.000  observed agreement 1.000  PABAK 1.000
+Cohen's kappa (garbled, n=50): 0.703  observed agreement 0.920  PABAK 0.840
+
+op       n  both valid  both invalid  split  garbled both/any
+H1      10          10             0      0           0/0
+H2      10          10             0      0           6/9
+H3      10          10             0      0           0/0
+H4      10          10             0      0           0/1
+E3       1           1             0      0           0/0
+E4       7           7             0      0           0/0
+E5       1           1             0      0           0/0
+E6       1           1             0      0           0/0
+drift   40          40             0      0           6/10
+equiv   10          10             0      0           0/0
+drift: both raters agree with construction 40/40 (100.0%, Wilson 95% 91.2%-100.0%)
+equiv: both raters agree with construction 10/10 (100.0%, Wilson 95% 72.2%-100.0%)

@@ -14,7 +14,7 @@ and the analysis that produces every number in the paper.
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-core.txt
 export PYTHONPATH=src
-python -m pytest -q tests              # 22 unit tests
+python -m pytest -q tests
 python -m snp.analysis                 # writes results/analysis/results.json and prints all tables
 ```
 
@@ -36,7 +36,7 @@ python -m snp.analysis                 # writes results/analysis/results.json an
 | `prompts/` | Repair and judge prompts, used verbatim |
 | `data/raw/` | QuRE and SecReq as downloaded from Zenodo |
 | `data/derived/` | Requirements, 7,796 drift mutants, 4,517 equivalents, 667 held-out mutants, gate pairs, repair pairs |
-| `data/audit/` | Blind validity audit: sheet as given to the raters, both raters' answers, the operator key; `python -m snp.audit_stats` gives kappa and validity (`results/audit_stats.txt`) |
+| `data/audit/` | Blind audits by two raters (one author, one non-author): mutant/equivalent audit (`audit_*`, `snp.audit_stats`), held-out audit (`heldout_*`, `snp.heldout_audit_stats`), type-level RQ3 check (`rq3_*`, `snp.rq3_audit_stats`, `snp.rq3_adjust`), repair-level RQ3 check (`repair_*`, `snp.audit3`; key added after rating) |
 | `results/` | Raw outputs of every gate and model run (one JSON line per call) |
 | `notes/FREEZE.md` | Frozen protocol, file hashes, every later revision with date and reason, run environment |
 | `RUNBOOK.md` | Exact commands used for the GPU and API runs |

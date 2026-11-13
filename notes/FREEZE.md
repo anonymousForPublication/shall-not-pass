@@ -120,3 +120,60 @@ Gemma 4 26B, self-judges by each, independent judge DeepSeek, G1-G3 on the repai
 and rules (score >= 4 reported next to the calibrated rule). pairs.py gained `repairs_L`, which writes
 data/derived/L_repair_pairs.jsonl and never touches the main repair_pairs.jsonl. A model that does not run 100% on
 the GPU is reported as not run.
+
+## v1.4 addendum (2026-11-12): RQ3 validation, held-out audit, second repair prompt (frozen before any is run or rated)
+Motivation (internal review): RQ3 rates come from the lexicon-bound extractor; the first prompt offers no
+"unchanged" option; H1-H4 were not audited.
+1. RQ3 extractor validation (src/snp/audit2.py, seed 20261112): 150 (repair, type) items, per repair model and
+   commitment type 7 extractor-flagged and 3 unflagged; two raters, blind to model and verdict, answer one
+   question per item. Report: Cohen's kappa, PABAK, and extractor precision per type (flagged items both raters
+   answer "yes"), with Wilson intervals. RQ3 rates are then reported per type together with this precision.
+2. Held-out audit: 40 H1-H4 mutants (10 each) mixed with 10 unused equivalents; same questions as the first audit.
+3. Prompt P2 (prompts/repair_p2.txt) = P1 plus "If the requirement is already unambiguous and verifiable, return
+   it unchanged." Same three models and settings, all 2,111 QuRE requirements. Report on controls and defects:
+   share returned unchanged, commitment change (any; beyond modality; beyond modality and conditions),
+   fabricated values. Expectation written before the run: more controls are left unchanged, but changes beyond
+   modality and fabricated values remain frequent on the repairs that are edited.
+Post hoc description added to RQ3 (no new data): repairs whose only change is modality vs changes beyond it.
+
+## v1.4 outcome, prompt P2 (2026-11-13; runs 12-13 Nov 2026, prompt tokens +13 vs P1 confirm the new prompt)
+Expectation "more controls left unchanged" essentially failed: 4 of 4,434 control repairs unchanged (DeepSeek 1,
+Qwen 3, Gemma 0). Changes beyond modality on controls: 56.9/71.0/57.7% (P1: 61.0/81.7/60.0%); fabricated values on
+controls 6.0/21.2/6.3%, on defects 14.8/42.3/13.7%. Expectation that such changes remain frequent held.
+
+## Arm L outcome (2026-11-13; Windows, RTX 4000 SFF Ada 20 GB, both models 100% GPU, 19.8 GB used for gemma4:26b)
+Qwen 3.8 27B judge (reasoning off, score >= 4): SAR 50/3874 = 1.3%, FER 135/2244 = 6.0%, AUROC 0.964; held-out 5/667.
+Repairs (P1): Qwen 27B PCC 93.5%, beyond modality 73.8%, fabricated 28.7%; Gemma 26B 87.9%, 64.6%, 9.0%; no control
+unchanged. Self-judge acceptance of flagged repairs: Qwen 27B 33.8%, Gemma 26B 74.2%. No missing scores.
+Pending: G1-G3 and DeepSeek as independent judge on L repairs (VM).
+
+## v1.4 outcome, RQ3 extractor validation (2026-11-13)
+Two raters, 150 items: kappa 0.902 (PABAK 0.907). Rater 1's exported copy shows "#NAME?" for the original of
+item 127 (spreadsheet formula conversion of a leading "-"); rater 1 read the full text in the formula bar while
+rating, so the rating is valid; rater 2's text is intact; both answered "no".
+Extractor precision (both raters "yes" among flagged): modality 16/21, values 12/21, negation 2/21, quant 13/21,
+cond 7/21; all 50/105 = 47.6%. Unflagged items confirmed unchanged: 43/45. By repair model: Qwen 24/35, DeepSeek
+14/35, Gemma 12/35. Fabrication flags confirmed: 12/17.
+Post hoc corrected estimates (src/snp/rq3_adjust.py; independence across types, one precision per type):
+changed 66.9/77.0/64.1%, beyond modality 33.7/53.3/30.9%, fabricated 6.1/24.4/4.7% (DeepSeek/Qwen/Gemma).
+Expectation in v1.4 (report precision per type) met; the uncorrected RQ3 rates were overstated.
+
+## v1.5 addendum (2026-11-13): repair-level reference standard (frozen before rating)
+Motivation (second internal review): type-level precision cannot identify the share of repairs with at least one
+true change, and RQ3 gate results were conditioned on extractor flags.
+Sample (src/snp/audit3.py, seed 20261113): per main repair model 30 extractor-flagged + 10 unflagged repairs, none
+used in the v1.4 check; 120 items. Raters see A and B only and answer Q1 (same/different/unsure) and Q2 (which
+commitments: modality, value, polarity, quantifier, condition, actor, scope, other). Raters should preferably not be
+authors; if they are, this is reported. Reference label = both raters agree; disagreements resolved by discussion
+and reported. Analysis fixed in `audit3.py analyse`: kappa/PABAK; extractor precision and recall per model;
+changed share per model weighted by flagged/unflagged population shares, bootstrap 95% interval; for G1-G3 (frozen
+thresholds) and self/other judge (score >= 4): silent acceptance on changed and false escalation on preserved
+repairs. When available, these repair-level estimates replace the type-level corrected estimates of v1.4 as the
+primary RQ3 result; the v1.4 estimates are kept as a secondary analysis.
+| src/snp/audit3.py | f9654f09e5c34bdd5904ec037f150d1b0461a911f61e69ff1f8ad995118f9d94 |
+| data/audit/repair_key.csv | a688644e04087a5097864c407876aade3d893b34614e55eab9b3a6b37428013e |
+| data/audit/repair_sheet_rater1.csv | fc9a92124aedd0f65075f23eb4b76c6bc27249c4864657048762c821bf8e30d0 |
+
+## Raters (recorded 2026-11-13)
+All audits (v1 audit, held-out audit, v1.4 type-level check, v1.5 repair-level check) use the same two raters:
+rater 1 is an author, rater 2 is not. Kappa values are therefore author/non-author agreement.

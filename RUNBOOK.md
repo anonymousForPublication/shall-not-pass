@@ -221,3 +221,17 @@ python -m snp.run_llm judge --model gemini-4-argon --base-url https://generative
 wc -l results/heldout_*      # expect 668 lines in the csv (header) and 667 in each jsonl
 ```
 Outputs: the four `results/heldout_*` files. API cost: under $1 for DeepSeek and about $1 for Argon.
+
+## 8. Protocol v1.4: second repair prompt P2 (allows "return it unchanged")
+
+Unzip `snp_v14_update.zip` over the code folder. Same models and settings as step 3; only the prompt differs.
+```bash
+source ~/.snp_keys; export PYTHONPATH=src
+# window 1 (GPU): local models, one after the other
+python -m snp.run_llm repair --prompt repair_p2.txt --model qwen3.5:9b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/p2_repair_qwen3.5-9b.jsonl
+python -m snp.run_llm repair --prompt repair_p2.txt --model gemma4:12b --base-url http://localhost:11434/v1 --reasoning-effort none --out results/p2_repair_gemma4-12b.jsonl
+# window 2 (API)
+python -m snp.run_llm repair --prompt repair_p2.txt --model deepseek-flash --base-url https://api.deepseek.com --api-key-env DEEPSEEK_API_KEY --max-tokens 4000 --out results/p2_repair_deepseek-flash.jsonl
+wc -l results/p2_repair_*      # expect 2111 each
+```
+Outputs: the three `results/p2_repair_*.jsonl` files. No gate or judge run is needed for P2.
