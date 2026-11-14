@@ -36,7 +36,7 @@ python -m snp.analysis                 # writes results/analysis/results.json an
 | `prompts/` | Repair and judge prompts, used verbatim |
 | `data/raw/` | QuRE and SecReq as downloaded from Zenodo |
 | `data/derived/` | Requirements, 7,796 drift mutants, 4,517 equivalents, 667 held-out mutants, gate pairs, repair pairs |
-| `data/audit/` | Blind audits by two raters (one author, one non-author): mutant/equivalent audit (`audit_*`, `snp.audit_stats`), held-out audit (`heldout_*`, `snp.heldout_audit_stats`), type-level RQ3 check (`rq3_*`, `snp.rq3_audit_stats`, `snp.rq3_adjust`), repair-level RQ3 check (`repair_*`, `snp.audit3`; key added after rating) |
+| `data/audit/` | Blind audits by two raters (one author, one non-author): mutant/equivalent audit (`audit_*`, `snp.audit_stats`), held-out audit (`heldout_*`, `snp.heldout_audit_stats`), type-level RQ3 check (`rq3_*`, `snp.rq3_audit_stats`, `snp.rq3_adjust`), repair-level RQ3 check (`repair_*`, `snp.audit3`; key added after rating; the 16 disagreements were adjudicated by a third expert blind to both raters, `repair_adjudication.csv`; post-hoc analyses in `snp.audit3_extra`) |
 | `results/` | Raw outputs of every gate and model run (one JSON line per call) |
 | `notes/FREEZE.md` | Frozen protocol, file hashes, every later revision with date and reason, run environment |
 | `RUNBOOK.md` | Exact commands used for the GPU and API runs |

@@ -1,0 +1,12 @@
+Cohen's kappa Q1 (n=120): 0.748  agreement 0.867  PABAK 0.733
+labels: Counter({'different': 77, 'same': 43})  (None = unresolved, excluded)
+deepseek-flash   changed (weighted) 50.0% [33.0%, 66.6%]  extractor precision 15/30  changed among unflagged 5/10
+qwen3.5:9b       changed (weighted) 84.1% [71.5%, 94.1%]  extractor precision 26/30  changed among unflagged 4/10
+gemma4:12b       changed (weighted) 65.5% [48.4%, 80.0%]  extractor precision 19/30  changed among unflagged 8/10
+
+gate        silent acceptance (changed)   false escalation (preserved)  [unweighted sample]
+G1             0/77    0.0%            43/43  100.0%
+G2             0/77    0.0%            38/43   88.4%
+G3             2/77    2.6%            36/43   83.7%
+self judge    49/77   63.6%            15/43   34.9%
+other judge   19/77   24.7%            21/43   48.8%

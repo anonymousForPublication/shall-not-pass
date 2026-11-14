@@ -1,0 +1,77 @@
+{
+ "deepseek-flash": {
+  "changed_weighted": [
+   0.5,
+   0.32953285827395085,
+   0.6657957244655581
+  ],
+  "extractor_precision": [
+   15,
+   30
+  ],
+  "unflagged_changed": [
+   5,
+   10
+  ]
+ },
+ "qwen3.5:9b": {
+  "changed_weighted": [
+   0.8414653402810675,
+   0.7153323859150481,
+   0.9414653402810674
+  ],
+  "extractor_precision": [
+   26,
+   30
+  ],
+  "unflagged_changed": [
+   4,
+   10
+  ]
+ },
+ "gemma4:12b": {
+  "changed_weighted": [
+   0.6550450023685457,
+   0.48403600189483653,
+   0.8
+  ],
+  "extractor_precision": [
+   19,
+   30
+  ],
+  "unflagged_changed": [
+   8,
+   10
+  ]
+ },
+ "G1": {
+  "changed": 77,
+  "silent": 0,
+  "preserved": 43,
+  "false_esc": 43
+ },
+ "G2": {
+  "changed": 77,
+  "silent": 0,
+  "preserved": 43,
+  "false_esc": 38
+ },
+ "G3": {
+  "changed": 77,
+  "silent": 2,
+  "preserved": 43,
+  "false_esc": 36
+ },
+ "self judge": {
+  "changed": 77,
+  "silent": 49,
+  "preserved": 43,
+  "false_esc": 15
+ },
+ "other judge": {
+  "changed": 77,
+  "silent": 19,
+  "preserved": 43,
+  "false_esc": 21
+ }
+}

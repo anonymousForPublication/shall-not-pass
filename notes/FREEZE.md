@@ -177,3 +177,25 @@ primary RQ3 result; the v1.4 estimates are kept as a secondary analysis.
 ## Raters (recorded 2026-11-13)
 All audits (v1 audit, held-out audit, v1.4 type-level check, v1.5 repair-level check) use the same two raters:
 rater 1 is an author, rater 2 is not. Kappa values are therefore author/non-author agreement.
+
+## v1.5 ratings received (2026-11-14)
+Q1 kappa 0.748 (agreement 86.7%, PABAK 0.733); 16 items are disagreements or "unsure" for one rater.
+Observation: of 81 items with notes from both raters, 8 notes are identical and 23 are at least 80% similar.
+Both raters state that they rated independently, without seeing each other's answers and without LLM help;
+this statement is recorded here. Notes are free text and are not used in any analysis.
+Deviation from the frozen plan: instead of resolution by discussion, a third expert, blind to both raters' answers,
+adjudicates the 16 items (data/audit/repair_adjudication_sheet.xlsx -> repair_adjudication.xlsx). Reported results
+show both the agreed-only labels and the adjudicated labels.
+Rater 1's file shows "#NAME?" for the original of item 77 (spreadsheet formula conversion); the text is intact in
+the generated sheet and in rater 2's file.
+
+## v1.5 adjudication received (2026-11-14)
+The third expert, blind to both raters, labelled the 16 items: 13 different, 3 same (items 34, 35, 58).
+Final reference: 77 changed, 43 preserved. Answers stored as data/audit/repair_adjudication.csv (converted from the
+returned workbook, whose file metadata identifies a person, so the workbook itself is not released).
+Frozen analysis (snp.audit3 analyse) with adjudication: changed (weighted) DeepSeek 50.0% [33.0, 66.6],
+Qwen 9B 84.1% [71.5, 94.1], Gemma 12B 65.5% [48.4, 80.0]; extractor precision 15/30, 26/30, 19/30.
+Agreed items only: 43.3%, 84.4%, 59.3%.
+Added after the ratings (exploratory, snp.audit3_extra): Wilson intervals for gate rates; judge results per repair
+model; G5 and G6 against the reference (G5 silent 17/77, false escalation 30/43; G6 0/77 and 40/43); extractor
+recall weighted by stratum (84-97%); commitment types named for changed repairs; agreed-only sensitivity.

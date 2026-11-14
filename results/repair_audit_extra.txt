@@ -1,0 +1,42 @@
+
+== with adjudication: Counter({'different': 77, 'same': 43})
+gate                         silent acceptance [95% Wilson]        false escalation [95% Wilson]
+G1                             0/77    0.0% [ 0.0%,  4.8%]    43/43  100.0% [91.8%, 100.0%]
+G2                             0/77    0.0% [ 0.0%,  4.8%]    38/43   88.4% [75.5%, 94.9%]
+G3                             2/77    2.6% [ 0.7%,  9.0%]    36/43   83.7% [70.0%, 91.9%]
+G5                            17/77   22.1% [14.3%, 32.5%]    30/43   69.8% [54.9%, 81.4%]
+G6                             0/77    0.0% [ 0.0%,  4.8%]    40/43   93.0% [81.4%, 97.6%]
+self judge                    49/77   63.6% [52.5%, 73.5%]    15/43   34.9% [22.4%, 49.8%]
+other judge                   19/77   24.7% [16.4%, 35.4%]    21/43   48.8% [34.6%, 63.2%]
+self judge qwen3.5:9b         28/30   93.3% [78.7%, 98.2%]     0/10    0.0% [ 0.0%, 27.8%]
+other judge qwen3.5:9b         0/30    0.0% [ 0.0%, 11.4%]    10/10  100.0% [72.2%, 100.0%]
+self judge deepseek-flash      2/20   10.0% [ 2.8%, 30.1%]    13/20   65.0% [43.3%, 81.9%]
+other judge deepseek-flash    19/20   95.0% [76.4%, 99.1%]     1/20    5.0% [ 0.9%, 23.6%]
+self judge gemma4:12b         19/27   70.4% [51.5%, 84.1%]     2/13   15.4% [ 4.3%, 42.2%]
+other judge gemma4:12b         0/27    0.0% [ 0.0%, 12.5%]    10/13   76.9% [49.7%, 91.8%]
+extractor recall deepseek-flash   88.6%  (unflagged share of repairs 11.4%)
+extractor recall qwen3.5:9b       97.4%  (unflagged share of repairs 5.4%)
+extractor recall gemma4:12b       84.1%  (unflagged share of repairs 13.0%)
+types named for changed repairs, extractor flag 1 (n=60): {'modality': 27, 'other': 22, 'scope': 18, 'condition': 16, 'value': 15, 'quantifier': 4, 'actor': 2, 'polarity': 1}
+types named for changed repairs, extractor flag 0 (n=17): {'other': 8, 'value': 6, 'scope': 5, 'condition': 5, 'modality': 2, 'actor': 1}
+
+== agreed items only: Counter({'different': 64, 'same': 40, None: 16})
+gate                         silent acceptance [95% Wilson]        false escalation [95% Wilson]
+G1                             0/64    0.0% [ 0.0%,  5.7%]    40/40  100.0% [91.2%, 100.0%]
+G2                             0/64    0.0% [ 0.0%,  5.7%]    35/40   87.5% [73.9%, 94.5%]
+G3                             2/64    3.1% [ 0.9%, 10.7%]    33/40   82.5% [68.0%, 91.3%]
+G5                            14/64   21.9% [13.5%, 33.4%]    28/40   70.0% [54.6%, 81.9%]
+G6                             0/64    0.0% [ 0.0%,  5.7%]    37/40   92.5% [80.1%, 97.4%]
+self judge                    43/64   67.2% [55.0%, 77.4%]    14/40   35.0% [22.1%, 50.5%]
+other judge                   13/64   20.3% [12.3%, 31.7%]    19/40   47.5% [32.9%, 62.5%]
+self judge qwen3.5:9b         28/30   93.3% [78.7%, 98.2%]     0/9     0.0% [ 0.0%, 29.9%]
+other judge qwen3.5:9b         0/30    0.0% [ 0.0%, 11.4%]     9/9   100.0% [70.1%, 100.0%]
+self judge deepseek-flash      1/14    7.1% [ 1.3%, 31.5%]    12/19   63.2% [41.0%, 80.9%]
+other judge deepseek-flash    13/14   92.9% [68.5%, 98.7%]     1/19    5.3% [ 0.9%, 24.6%]
+self judge gemma4:12b         14/20   70.0% [48.1%, 85.5%]     2/12   16.7% [ 4.7%, 44.8%]
+other judge gemma4:12b         0/20    0.0% [ 0.0%, 16.1%]     9/12   75.0% [46.8%, 91.1%]
+extractor recall deepseek-flash   90.1%  (unflagged share of repairs 11.4%)
+extractor recall qwen3.5:9b       97.2%  (unflagged share of repairs 5.4%)
+extractor recall gemma4:12b       82.9%  (unflagged share of repairs 13.0%)
+types named for changed repairs, extractor flag 1 (n=50): {'other': 22, 'modality': 21, 'scope': 17, 'condition': 15, 'value': 13, 'quantifier': 3, 'actor': 2, 'polarity': 1}
+types named for changed repairs, extractor flag 0 (n=14): {'other': 7, 'scope': 5, 'value': 5, 'condition': 4, 'modality': 2}

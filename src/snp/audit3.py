@@ -79,9 +79,14 @@ def analyse():
     y = [r2[i][Q1].strip().lower() for i in items]
     k, po = kappa(x, y)
     out = [f"Cohen's kappa Q1 (n={len(items)}): {k:.3f}  agreement {po:.3f}  PABAK {2 * po - 1:.3f}"]
+    adj = {}
+    adj_path = A / "repair_adjudication.csv"
+    if adj_path.exists():  # v1.5 deviation: a third expert adjudicates disagreements (blind to both raters)
+        for rec in csv.DictReader(open(adj_path, encoding="utf-8-sig")):
+            adj[str(rec["item"])] = str(rec.get(Q1) or "").strip().lower()
     lab = {}
     for i, a, b in zip(items, x, y):
-        res = (r1[i].get("resolved_label") or r2[i].get("resolved_label") or "").strip().lower()
+        res = adj.get(i) or (r1[i].get("resolved_label") or r2[i].get("resolved_label") or "").strip().lower()
         lab[i] = a if a == b and a in ("same", "different") else (res if res in ("same", "different") else None)
     out.append(f"labels: {Counter(lab.values())}  (None = unresolved, excluded)")
     pop = Counter((p["repair_model"], p["flag"]) for p in _pairs())
